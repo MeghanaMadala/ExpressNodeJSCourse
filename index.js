@@ -1,10 +1,14 @@
 const express = require('express');
 const http = require('http');
+const morgan = require('morgan');
 
 const hostname = "localhost";
 const port = 3000;
 
 const app = express();
+app.use(morgan('dev'));
+
+app.use(express.static(__dirname+ '/public')); /* This tells Express to serve up the static files from double underscore dirname. So, this says the root of this project and they will find those files in double_dirname, plus/ public. */
 
 app.use((req, res, next) => {
     console.log(req.headers);
